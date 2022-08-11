@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import AddSubscriptionPage from "./pages/AddSubscriptionPage";
 import EditSubscriptionPage from "./pages/EditSubscriptionPage";
 import LoginPage from "./pages/LoginPage";
-
+import MainLayout from "./layout/MainLayout";
 function App() {
 	return (
 		<div>
@@ -12,12 +12,12 @@ function App() {
 				<Route
 					exact
 					path="/add-subscription"
-					element={<AddSubscriptionPage />}
+					element={<MainLayout children={<AddSubscriptionPage />} />}
 				/>
 				<Route
 					exact
 					path="/edit-subscription"
-					element={<EditSubscriptionPage />}
+					element={<MainLayout children={<EditSubscriptionPage />} />}
 				/>
 			</Routes>
 		</div>

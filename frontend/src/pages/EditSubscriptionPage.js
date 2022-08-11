@@ -1,7 +1,7 @@
 import React from "react";
 
 const EditSubscriptionPage = () => {
-	return <div>EditSubscriptionPage</div>;
+	return <>EditSubscriptionPage</>;
 };
 
 export default EditSubscriptionPage;
