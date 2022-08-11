@@ -3,12 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import GlobalState from "./context/GlobalState";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<GlobalState>
-			<App />
-		</GlobalState>
+		<BrowserRouter>
+			<GlobalState>
+				<App />
+			</GlobalState>
+		</BrowserRouter>
 	</React.StrictMode>
 );
