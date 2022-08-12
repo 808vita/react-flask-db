@@ -119,7 +119,8 @@ def list_subscriptions():
     """
     try:
         cur = mysql.connection.cursor()
-        subscriptions = cur.execute("SELECT * FROM subscription")
+        subscriptions = cur.execute(
+            "SELECT Subscription_ID,Customer_ID,Product_Name,DATE_FORMAT(Start_Date,'%Y-%m-%d'),DATE_FORMAT(End_Date,'%Y-%m-%d'),Users_Count FROM subscription")
 
         if subscriptions > 0:
             subscriptions_list = cur.fetchall()
@@ -160,19 +161,29 @@ def add_subscription():
     return "oof add"
 
 
-@app.route("/api/edit-subscription", methods=['POST'])
+@app.route("/api/edit-subscription", methods=['GET', 'POST'])
 def edit_subscription():
     """
     api end point to edit subscriptions.
     this api should be able to extend the end date / set end date to today.
     """
-    customer_id = request.form['customerId']
-    selected_product_id = request.form['productId']
-    start_date = request.form['startDate']
-    end_date = request.form['endDate']
-    new_end_date = request.form['newEndDate']
-    users_count = request.form['usersCount']
+    # subscription_id = request.form['subscriptionId']
+    # customer_id = request.form['customerId']
+    # selected_product_id = request.form['productId']
+    # start_date = request.form['startDate']
+    # end_date = request.form['endDate']
+    # new_end_date = request.form['newEndDate']
+    # users_count = request.form['usersCount']
 
+    subscription_id = "1"
+    end_date = "2022-08-20"
+
+    cur = mysql.connection.cursor()
+
+    cur.execute(f"UPDATE subscription SET End_Date=%s WHERE Subscription_ID=%s", (end_date, subscription_id)
+                )
+    mysql.connection.commit()
+    cur.close()
     return "oof edit"
 
 
