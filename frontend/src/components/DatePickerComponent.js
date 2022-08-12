@@ -4,7 +4,10 @@ const { RangePicker } = DatePicker;
 
 const DatePickerComponent = () => (
 	<Space direction="vertical" size={12}>
-		<RangePicker onChange={(date, dateString) => console.log(dateString)} />
+		<RangePicker
+			style={{ width: "22rem" }}
+			onChange={(date, dateString) => console.log(dateString)}
+		/>
 	</Space>
 );
 
