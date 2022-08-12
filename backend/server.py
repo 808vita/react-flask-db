@@ -81,7 +81,7 @@ def list_customers():
     """
     try:
         cur = mysql.connection.cursor()
-        customers = cur.execute("SELECT Name , PAN FROM customer")
+        customers = cur.execute("SELECT * FROM customer")
 
         if customers > 0:
             customers_list = cur.fetchall()
@@ -109,6 +109,71 @@ def list_products():
     except Exception as e:
         print(f'An exception occurred {e}')
         return (f'An exception occurred {e}')
+
+
+@app.route("/api/list-subscriptions", methods=['GET'])
+def list_subscriptions():
+    """
+    returns subscriptions list json , to be used listing subscriptions.
+    this route needs protection.
+    """
+    try:
+        cur = mysql.connection.cursor()
+        subscriptions = cur.execute("SELECT * FROM subscription")
+
+        if subscriptions > 0:
+            subscriptions_list = cur.fetchall()
+            return jsonify(subscriptions_list)
+
+    except Exception as e:
+        print(f'An exception occurred {e}')
+        return (f'An exception occurred {e}')
+
+
+@app.route("/api/add-subscription", methods=['GET', 'POST'])
+def add_subscription():
+    """
+    api end point to add new subscriptions.
+    This api should also have validations to check whether the selection combination of 
+    subscription already exists in the db.
+    If it does not exist , add entry into the required table.
+    If it does exist , return json stating that the current selection exists
+    """
+    # customer_id = request.form['customerId']
+    # selected_product_id = request.form['productId']
+    # start_date = request.form['startDate']
+    # end_date = request.form['endDate']
+    # users_count = request.form['usersCount']
+
+    customer_id = "4"
+    selected_product_id = "SigmaMemePro"
+    start_date = "2022-08-12"
+    end_date = "2022-08-15"
+    users_count = 2
+
+    cur = mysql.connection.cursor()
+
+    cur.execute(f"INSERT INTO subscription (Customer_ID,Product_Name,Start_Date,End_Date,Users_Count) VALUES(%s,%s,%s,%s,%s)", (customer_id, selected_product_id, start_date, end_date, users_count)
+                )
+    mysql.connection.commit()
+    cur.close()
+    return "oof add"
+
+
+@app.route("/api/edit-subscription", methods=['POST'])
+def edit_subscription():
+    """
+    api end point to edit subscriptions.
+    this api should be able to extend the end date / set end date to today.
+    """
+    customer_id = request.form['customerId']
+    selected_product_id = request.form['productId']
+    start_date = request.form['startDate']
+    end_date = request.form['endDate']
+    new_end_date = request.form['newEndDate']
+    users_count = request.form['usersCount']
+
+    return "oof edit"
 
 
 if __name__ == "__main__":
