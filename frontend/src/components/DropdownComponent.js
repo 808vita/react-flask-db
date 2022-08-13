@@ -45,6 +45,9 @@ const App = ({ buttonName, options, customersInfo, setSelectedOption }) => {
 		} else if (buttonName === "Select Product") {
 			setSelection(e.key);
 			message.info(`Selected Product ${e.key}`);
+		} else if (buttonName === "Customer With Subscriptions") {
+			setSelection(`${customersInfo[e.key]}`);
+			message.info(`Selected ${customersInfo[e.key]}`);
 		} else {
 			setSelection(`No. Of Users : ${e.key}`);
 			message.info(`Selected ${e.key} Users`);
