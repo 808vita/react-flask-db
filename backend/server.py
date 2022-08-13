@@ -128,6 +128,16 @@ def list_subscriptions():
     return run_get_sql("SELECT Subscription_ID,Customer_ID,Product_Name,DATE_FORMAT(Start_Date,'%Y-%m-%d'),DATE_FORMAT(End_Date,'%Y-%m-%d'),Users_Count FROM subscription")
 
 
+@app.route("/api/reports-data", methods=['GET'])
+def reports_data():
+    """
+    returns subscriptions list json , to be used listing subscriptions.
+    this route needs protection.
+    """
+
+    return run_get_sql("SELECT product.Product_Name,product.User_Annual_Cost,customer.Name,subscription.Users_Count,DATE_FORMAT(Start_Date,'%Y-%m-%d'),DATE_FORMAT(End_Date,'%Y-%m-%d')  FROM subscription , product,customer WHERE subscription.Product_Name=product.Product_Name AND subscription.Customer_ID=customer.Customer_ID ")
+
+
 # @app.route("/api/validate", methods=['GET'])
 def validate(customer_id, selected_product_id):
     """

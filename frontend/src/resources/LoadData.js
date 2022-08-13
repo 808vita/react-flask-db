@@ -30,6 +30,14 @@ export const ListSubscriptions = async () => {
 		return error.response;
 	}
 };
+export const ReportsData = async () => {
+	try {
+		const response = await axios.get("/api/reports-data");
+		return response;
+	} catch (error) {
+		return error.response;
+	}
+};
 export const AddSubscription = async (formData) => {
 	try {
 		const response = await axios.post("/api/add-subscription", formData);
