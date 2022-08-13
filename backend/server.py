@@ -81,17 +81,20 @@ def verify_token():
 
 
 def run_get_sql(sql_query):
+    """ 
+    function used for running sql queries for some routes
+    """
     try:
         cur = mysql.connection.cursor()
         resultsFromSql = cur.execute(sql_query)
 
         if resultsFromSql > 0:
             result_list = cur.fetchall()
-            return jsonify(result_list)
+            return jsonify(result_list), 200
 
     except Exception as e:
         print(f'An exception occurred {e}')
-        return (f'An exception occurred {e}')
+        return (f'An exception occurred {e}', 500)
     return
 
 
@@ -102,17 +105,6 @@ def list_customers():
     this route needs protection.
     """
 
-    # try:
-    #     cur = mysql.connection.cursor()
-    #     customers = cur.execute("SELECT * FROM customer")
-
-    #     if customers > 0:
-    #         customers_list = cur.fetchall()
-    #         return jsonify(customers_list)
-
-    # except Exception as e:
-    #     print(f'An exception occurred {e}')
-    #     return (f'An exception occurred {e}')
     return run_get_sql("SELECT * FROM customer")
 
 
@@ -122,17 +114,6 @@ def list_products():
     returns products list json , to be used in dropdown.
     this route needs protection.
     """
-    # try:
-    #     cur = mysql.connection.cursor()
-    #     products = cur.execute("SELECT * FROM product")
-
-    #     if products > 0:
-    #         products_list = cur.fetchall()
-    #         return jsonify(products_list)
-
-    # except Exception as e:
-    #     print(f'An exception occurred {e}')
-    #     return (f'An exception occurred {e}')
 
     return run_get_sql("SELECT * FROM product")
 
@@ -143,18 +124,7 @@ def list_subscriptions():
     returns subscriptions list json , to be used listing subscriptions.
     this route needs protection.
     """
-    # try:
-    #     cur = mysql.connection.cursor()
-    #     subscriptions = cur.execute(
-    #         "SELECT Subscription_ID,Customer_ID,Product_Name,DATE_FORMAT(Start_Date,'%Y-%m-%d'),DATE_FORMAT(End_Date,'%Y-%m-%d'),Users_Count FROM subscription")
 
-    #     if subscriptions > 0:
-    #         subscriptions_list = cur.fetchall()
-    #         return jsonify(subscriptions_list)
-
-    # except Exception as e:
-    #     print(f'An exception occurred {e}')
-    #     return (f'An exception occurred {e}')
     return run_get_sql("SELECT Subscription_ID,Customer_ID,Product_Name,DATE_FORMAT(Start_Date,'%Y-%m-%d'),DATE_FORMAT(End_Date,'%Y-%m-%d'),Users_Count FROM subscription")
 
 
@@ -180,8 +150,6 @@ def validate(customer_id, selected_product_id):
     except Exception as e:
         print(f'An exception occurred {e}')
         return (f'An exception occurred {e}')
-
-    # return run_get_sql("SELECT * FROM subscription WHERE Customer_ID=%s AND Product_Name=%s")
 
 
 @app.route("/api/add-subscription", methods=['GET', 'POST'])
@@ -213,13 +181,13 @@ def add_subscription():
                         )
             mysql.connection.commit()
             cur.close()
-            return "Added Entry"
+            return "Added Entry", 201
         else:
-            return "Already Purchased"
+            return "Already Purchased", 400
 
     except Exception as e:
         print(f'An exception occurred {e}')
-        return (f'An exception occurred {e}')
+        return (f'An exception occurred {e}', 500)
 
 
 @app.route("/api/edit-subscription", methods=['GET', 'POST'])
@@ -247,7 +215,7 @@ def edit_subscription():
                 )
     mysql.connection.commit()
     cur.close()
-    return "Record Edited"
+    return "Record Edited", 200
 
 
 if __name__ == "__main__":

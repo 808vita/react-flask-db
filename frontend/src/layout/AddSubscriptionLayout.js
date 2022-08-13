@@ -40,7 +40,7 @@ const AddSubscriptionLayout = ({
 			formData.append("end_date", selectedStartEnd);
 
 			mutate(AddSubscription(formData));
-			console.log(mutate);
+			// console.log(mutate);
 		} else {
 			console.log("oof fill/select all fields");
 			WarningMessage("select all fields");

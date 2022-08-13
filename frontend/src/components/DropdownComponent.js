@@ -6,11 +6,6 @@ import {
 import { Button, Dropdown, Menu, message, Space } from "antd";
 import React, { useState } from "react";
 
-const handleButtonClick = (e) => {
-	message.info("Click on left button.");
-	console.log("click left button", e);
-};
-
 const icons = {
 	userOutline: <UserOutlined />,
 	numberOfUsers: <UsergroupAddOutlined />,
@@ -56,7 +51,7 @@ const App = ({
 			setSelection(`${customersInfo[e.key]}`);
 			message.info(`Selected ${customersInfo[e.key]}`);
 			setShowDate(customerDateInfo[e.key]);
-			console.log(customerDateInfo[e.key]);
+			// console.log(customerDateInfo[e.key]);
 		} else {
 			setSelection(`No. Of Users : ${e.key}`);
 			message.info(`Selected ${e.key} Users`);

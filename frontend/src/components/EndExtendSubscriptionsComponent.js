@@ -15,7 +15,8 @@ const options = [
 ];
 const EndExtendSubscriptionsComponent = ({
 	setSelectedStartEnd,
-	buttonName,showDate
+	buttonName,
+	showDate,
 }) => {
 	const [selection, setSelection] = useState("");
 
@@ -28,7 +29,7 @@ const EndExtendSubscriptionsComponent = ({
 		} else {
 			setSelection(`End Subscription Today`);
 			message.info(`Selected End Subscription Today`);
-			console.log(moment(new Date()).format("YYYY-MM-DD"));
+			// console.log(moment(new Date()).format("YYYY-MM-DD"));
 			setSelectedStartEnd(moment(new Date()).format("YYYY-MM-DD"));
 		}
 	};

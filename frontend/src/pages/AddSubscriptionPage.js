@@ -11,8 +11,8 @@ const AddSubscriptionPage = () => {
 	);
 	const { data: listProducts } = useQuery("listProducts", ListProducts);
 
-	console.log(listCustomers);
-	console.log(listProducts);
+	// console.log(listCustomers);
+	// console.log(listProducts);
 	let listCustomersData = [];
 	let listProductsData = [];
 	let customersInfo = {};
@@ -31,7 +31,7 @@ const AddSubscriptionPage = () => {
 			listCustomers.data,
 			(item) => (customersInfo[item[0]] = item[1] + " " + item[2])
 		);
-		console.log(customersInfo);
+		// console.log(customersInfo);
 		listProductsData = _.map(listProducts.data, (item) => {
 			productslist.push(item[0]);
 			productSpec = { price: item[2] };
@@ -43,7 +43,7 @@ const AddSubscriptionPage = () => {
 				key: item[0],
 			};
 		});
-		console.log(ProductInfo);
+		// console.log(ProductInfo);
 		return (
 			<AddSubscriptionLayout
 				listProductsData={listProductsData}

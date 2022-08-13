@@ -14,8 +14,8 @@ const EditSubscriptionPage = () => {
 		ListSubscriptions
 	);
 	// if (isLoading) return <h1>Loading....</h1>;
-	console.log(listCustomers);
-	console.log(listSubscriptions);
+	// console.log(listCustomers);
+	// console.log(listSubscriptions);
 	let listCustomersData = [];
 	let listSubscriptionsData = [];
 	let customersInfo = {};
@@ -36,7 +36,7 @@ const EditSubscriptionPage = () => {
 			listCustomers.data,
 			(item) => (customersInfo[item[0]] = item[1] + " " + item[2])
 		);
-		console.log(customersInfo);
+		// console.log(customersInfo);
 		listSubscriptionsData = _.map(listSubscriptions.data, (item) => {
 			customerProductInfo[item[0]] = customersInfo[item[1]] + " : " + item[2];
 			customerDateInfo[item[0]] = [item[3], item[4]];
@@ -45,9 +45,9 @@ const EditSubscriptionPage = () => {
 				key: item[0],
 			};
 		});
-		console.log(listSubscriptionsData);
-		console.log(customerProductInfo);
-		console.log(customerDateInfo);
+		// console.log(listSubscriptionsData);
+		// console.log(customerProductInfo);
+		// console.log(customerDateInfo);
 		return (
 			<EditSubscriptionLayout
 				customersInfo={customersInfo}

@@ -9,12 +9,10 @@ const DatePickerEditComponent = ({ setSelectedStartEnd, showDate }) => {
 	};
 	const disabledDate = (current) => {
 		if (showDate) {
-			console.log(showDate);
-
 			return current && current < moment(showDate[0]);
 		} else {
 			// Can not select days before today and today
-			console.log(showDate);
+
 			return current && current < moment().endOf("day");
 		}
 	};

@@ -6,30 +6,49 @@ import {
 } from "../components/Messages";
 //
 
-export const ListCustomers = () => {
-	return axios.get("/api/list-customers");
+export const ListCustomers = async () => {
+	try {
+		const response = await axios.get("/api/list-customers");
+		return response;
+	} catch (error) {
+		return error.response;
+	}
 };
-export const ListProducts = () => {
-	return axios.get("/api/list-products");
+export const ListProducts = async () => {
+	try {
+		const response = await axios.get("/api/list-products");
+		return response;
+	} catch (error) {
+		return error.response;
+	}
 };
-export const ListSubscriptions = () => {
-	return axios.get("/api/list-subscriptions");
+export const ListSubscriptions = async () => {
+	try {
+		const response = await axios.get("/api/list-subscriptions");
+		return response;
+	} catch (error) {
+		return error.response;
+	}
 };
 export const AddSubscription = async (formData) => {
 	try {
 		const response = await axios.post("/api/add-subscription", formData);
 		console.log(response);
-		if (response.data == "Added Entry") {
+		if (response.status == 201) {
 			SuccessMessage("Added Subscription!");
 		}
-		if (response.data == "Already Purchased") {
-			WarningMessage(response.data + "! Please Change options & try again.");
-		}
+
 		return response;
 	} catch (error) {
 		console.log(error);
-		ErrorMessage(error);
-		return error;
+		if (error.response.status == 400) {
+			WarningMessage(
+				"Already exists!" + "! Please Change options & try again."
+			);
+		} else {
+			ErrorMessage(error.message + "! Please Change options & try again.");
+		}
+		return error.response;
 	}
 };
 
