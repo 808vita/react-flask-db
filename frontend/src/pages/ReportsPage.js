@@ -37,7 +37,12 @@ const ReportsPage = () => {
 		GroupedByProduct = _.groupBy(formattedData, "product");
 		console.log(GroupedByProduct);
 
-		return <ReportsLayout />;
+		return (
+			<ReportsLayout
+				GroupedByProduct={GroupedByProduct}
+				GroupedByCustomer={GroupedByCustomer}
+			/>
+		);
 	} else {
 		return <h2>Loading...</h2>;
 	}
