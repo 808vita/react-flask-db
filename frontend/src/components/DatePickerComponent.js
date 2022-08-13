@@ -11,7 +11,7 @@ const DatePickerComponent = ({ setSelectedStartDate, setSelectedStartEnd }) => {
 	return (
 		<Space direction="vertical" size={12}>
 			<RangePicker
-				style={{ width: "22rem" }}
+				style={{ width: "22rem", height: "3rem", fontSize: "1rem" }}
 				onChange={(date, dateString) => handleChange(dateString)}
 			/>
 		</Space>

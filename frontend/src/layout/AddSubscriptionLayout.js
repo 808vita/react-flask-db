@@ -42,12 +42,12 @@ const AddSubscriptionLayout = ({
 	return (
 		<Row justify="center" align="middle">
 			<Col span={24}>
-				<Col span={24}>
+				<Col span={24} style={{ padding: "20px 0px 10px 0px" }}>
 					<Row justify="center" align="middle">
 						<h1>Add Subscription</h1>
 					</Row>
 				</Col>
-				<Col span={24}>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row justify="center" align="middle">
 						<Col span={24}>
 							<Row justify="center" align="middle">
@@ -61,7 +61,7 @@ const AddSubscriptionLayout = ({
 						</Col>
 					</Row>
 				</Col>
-				<Col span={24}>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row>
 						<Col span={24}>
 							<Row justify="center" align="middle">
@@ -74,7 +74,7 @@ const AddSubscriptionLayout = ({
 						</Col>
 					</Row>
 				</Col>
-				<Col span={24}>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row>
 						<Col span={24}>
 							<Row justify="center" align="middle">
@@ -86,7 +86,7 @@ const AddSubscriptionLayout = ({
 						</Col>
 					</Row>
 				</Col>
-				<Col span={24}>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row justify="center" align="middle">
 						<DatePickerComponent
 							setSelectedStartDate={setSelectedStartDate}
@@ -94,9 +94,19 @@ const AddSubscriptionLayout = ({
 						/>
 					</Row>
 				</Col>
-				<Col span={24}>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row justify="center" align="middle">
-						<Button onClick={() => handleButtonClick()} type="primary">
+						<Button
+							style={{
+								padding: "10px 5px ",
+								width: "22rem",
+								height: "3rem",
+								fontWeight: "bolder",
+								fontSize: "1rem",
+							}}
+							onClick={() => handleButtonClick()}
+							type="primary"
+						>
 							Create Subscription
 						</Button>
 					</Row>

@@ -167,13 +167,13 @@ def edit_subscription():
     api end point to edit subscriptions.
     this api should be able to extend the end date / set end date to today.
     """
-    # subscription_id = request.form['subscriptionId']
-    # customer_id = request.form['customerId']
-    # selected_product_id = request.form['productId']
-    # start_date = request.form['startDate']
-    # end_date = request.form['endDate']
-    # new_end_date = request.form['newEndDate']
-    # users_count = request.form['usersCount']
+    # subscription_id = request.form['subscription_id']
+    # customer_id = request.form['customer_id']
+    # selected_product_id = request.form['selected_product_id']
+    # start_date = request.form['start_date']
+    # end_date = request.form['end_date']
+    # new_end_date = request.form['new_end_date']
+    # users_count = request.form['users_count']
 
     subscription_id = "1"
     end_date = "2022-08-20"

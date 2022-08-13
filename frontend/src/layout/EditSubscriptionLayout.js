@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Divider } from "antd";
 import DropdownComponent from "../components/DropdownComponent";
+import DatePickerEditComponent from "../components/DatePickerEditComponent";
 
 const EditSubscriptionLayout = ({
 	customersInfo,
@@ -11,13 +12,13 @@ const EditSubscriptionLayout = ({
 	const [selectedSubscriptionID, setSelectedSubscriptionID] = useState("");
 	return (
 		<Row justify="center" align="middle">
-			<Col span={24}>
+			<Col span={24} style={{ padding: "20px 0px 10px 0px" }}>
 				<Col span={24}>
 					<Row justify="center" align="middle">
 						<h1>Edit Subscription</h1>
 					</Row>
 				</Col>
-				<Col span={24}>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row justify="center" align="middle">
 						<Col span={24}>
 							<Row justify="center" align="middle">
@@ -32,12 +33,12 @@ const EditSubscriptionLayout = ({
 					</Row>
 				</Col>
 
-				<Col span={24}>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row justify="center" align="middle">
-						End Subscription today
+						<DatePickerEditComponent />
 					</Row>
 				</Col>
-				<Col span={24}>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row justify="center" align="middle">
 						Edit Subscription button
 					</Row>

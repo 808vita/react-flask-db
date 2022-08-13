@@ -60,7 +60,7 @@ const App = ({ buttonName, options, customersInfo, setSelectedOption }) => {
 	return (
 		<Space wrap>
 			<Dropdown overlay={menu}>
-				<Button style={{ width: "22rem" }}>
+				<Button style={{ width: "22rem", height: "3rem", fontSize: "1rem" }}>
 					<Space>
 						{selection ? selection : buttonName}
 						<DownOutlined />
