@@ -1,13 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { GlobalContext } from "../context/GlobalState";
+
 import { useNavigate } from "react-router-dom";
 import { Breadcrumb, Layout, Menu } from "antd";
 
 const { Header, Content, Footer } = Layout;
 
 const MainLayout = ({ children }) => {
-	const GContext = useContext(GlobalContext);
-	const { loading, setLoading } = GContext;
 	const navigate = useNavigate();
 
 	const handleCLick = (key) => {
