@@ -11,3 +11,7 @@ export const ErrorMessage = (msg) => {
 export const WarningMessage = (msg) => {
 	message.warning(msg);
 };
+
+export const LoadingMessage = () => {
+	message.loading("Loading...");
+};

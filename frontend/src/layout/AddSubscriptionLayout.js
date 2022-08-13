@@ -7,6 +7,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 	WarningMessage,
+	LoadingMessage,
 } from "../components/Messages";
 const AddSubscriptionLayout = ({
 	listCustomersData,
@@ -28,6 +29,7 @@ const AddSubscriptionLayout = ({
 			selectedStartDate &&
 			selectedStartEnd
 		) {
+			LoadingMessage();
 			console.log("all selected !");
 			const formData = new FormData();
 

@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template
 from flask import jsonify
 from flask import request
@@ -79,23 +80,40 @@ def verify_token():
 # auth ______
 
 
+def run_get_sql(sql_query):
+    try:
+        cur = mysql.connection.cursor()
+        resultsFromSql = cur.execute(sql_query)
+
+        if resultsFromSql > 0:
+            result_list = cur.fetchall()
+            return jsonify(result_list)
+
+    except Exception as e:
+        print(f'An exception occurred {e}')
+        return (f'An exception occurred {e}')
+    return
+
+
 @app.route("/api/list-customers", methods=['GET'])
 def list_customers():
     """
     returns customers list json , to be used in dropdown.
     this route needs protection.
     """
-    try:
-        cur = mysql.connection.cursor()
-        customers = cur.execute("SELECT * FROM customer")
 
-        if customers > 0:
-            customers_list = cur.fetchall()
-            return jsonify(customers_list)
+    # try:
+    #     cur = mysql.connection.cursor()
+    #     customers = cur.execute("SELECT * FROM customer")
 
-    except Exception as e:
-        print(f'An exception occurred {e}')
-        return (f'An exception occurred {e}')
+    #     if customers > 0:
+    #         customers_list = cur.fetchall()
+    #         return jsonify(customers_list)
+
+    # except Exception as e:
+    #     print(f'An exception occurred {e}')
+    #     return (f'An exception occurred {e}')
+    return run_get_sql("SELECT * FROM customer")
 
 
 @app.route("/api/list-products", methods=['GET'])
@@ -104,17 +122,19 @@ def list_products():
     returns products list json , to be used in dropdown.
     this route needs protection.
     """
-    try:
-        cur = mysql.connection.cursor()
-        products = cur.execute("SELECT * FROM product")
+    # try:
+    #     cur = mysql.connection.cursor()
+    #     products = cur.execute("SELECT * FROM product")
 
-        if products > 0:
-            products_list = cur.fetchall()
-            return jsonify(products_list)
+    #     if products > 0:
+    #         products_list = cur.fetchall()
+    #         return jsonify(products_list)
 
-    except Exception as e:
-        print(f'An exception occurred {e}')
-        return (f'An exception occurred {e}')
+    # except Exception as e:
+    #     print(f'An exception occurred {e}')
+    #     return (f'An exception occurred {e}')
+
+    return run_get_sql("SELECT * FROM product")
 
 
 @app.route("/api/list-subscriptions", methods=['GET'])
@@ -123,18 +143,45 @@ def list_subscriptions():
     returns subscriptions list json , to be used listing subscriptions.
     this route needs protection.
     """
-    try:
-        cur = mysql.connection.cursor()
-        subscriptions = cur.execute(
-            "SELECT Subscription_ID,Customer_ID,Product_Name,DATE_FORMAT(Start_Date,'%Y-%m-%d'),DATE_FORMAT(End_Date,'%Y-%m-%d'),Users_Count FROM subscription")
+    # try:
+    #     cur = mysql.connection.cursor()
+    #     subscriptions = cur.execute(
+    #         "SELECT Subscription_ID,Customer_ID,Product_Name,DATE_FORMAT(Start_Date,'%Y-%m-%d'),DATE_FORMAT(End_Date,'%Y-%m-%d'),Users_Count FROM subscription")
 
-        if subscriptions > 0:
-            subscriptions_list = cur.fetchall()
-            return jsonify(subscriptions_list)
+    #     if subscriptions > 0:
+    #         subscriptions_list = cur.fetchall()
+    #         return jsonify(subscriptions_list)
+
+    # except Exception as e:
+    #     print(f'An exception occurred {e}')
+    #     return (f'An exception occurred {e}')
+    return run_get_sql("SELECT Subscription_ID,Customer_ID,Product_Name,DATE_FORMAT(Start_Date,'%Y-%m-%d'),DATE_FORMAT(End_Date,'%Y-%m-%d'),Users_Count FROM subscription")
+
+
+# @app.route("/api/validate", methods=['GET'])
+def validate(customer_id, selected_product_id):
+    """
+    check if the customer id and product already in db 
+    """
+    try:
+        # customer_id = "2"
+        # selected_product_id = "SigmaMemePro"
+        cur = mysql.connection.cursor()
+        already_purchased = cur.execute(
+            f"SELECT Customer_ID,Product_Name FROM subscription WHERE Customer_ID=%s AND Product_Name=%s", (customer_id, selected_product_id))
+
+        if already_purchased > 0:
+            already_purchased_list = cur.fetchall()
+            return True
+        if already_purchased == 0:
+            already_purchased_list = cur.fetchall()
+            return False
 
     except Exception as e:
         print(f'An exception occurred {e}')
         return (f'An exception occurred {e}')
+
+    # return run_get_sql("SELECT * FROM subscription WHERE Customer_ID=%s AND Product_Name=%s")
 
 
 @app.route("/api/add-subscription", methods=['GET', 'POST'])
@@ -157,14 +204,22 @@ def add_subscription():
     # start_date = "2022-08-12"
     # end_date = "2022-08-15"
     # users_count = 2
+    try:
+        isPurchased = validate(customer_id, selected_product_id)
+        if isPurchased == False:
+            cur = mysql.connection.cursor()
 
-    cur = mysql.connection.cursor()
+            cur.execute(f"INSERT INTO subscription (Customer_ID,Product_Name,Start_Date,End_Date,Users_Count) VALUES(%s,%s,%s,%s,%s)", (customer_id, selected_product_id, start_date, end_date, users_count)
+                        )
+            mysql.connection.commit()
+            cur.close()
+            return "Added Entry"
+        else:
+            return "Already Purchased"
 
-    cur.execute(f"INSERT INTO subscription (Customer_ID,Product_Name,Start_Date,End_Date,Users_Count) VALUES(%s,%s,%s,%s,%s)", (customer_id, selected_product_id, start_date, end_date, users_count)
-                )
-    mysql.connection.commit()
-    cur.close()
-    return "oof add"
+    except Exception as e:
+        print(f'An exception occurred {e}')
+        return (f'An exception occurred {e}')
 
 
 @app.route("/api/edit-subscription", methods=['GET', 'POST'])
@@ -192,7 +247,7 @@ def edit_subscription():
                 )
     mysql.connection.commit()
     cur.close()
-    return "oof edit"
+    return "Record Edited"
 
 
 if __name__ == "__main__":

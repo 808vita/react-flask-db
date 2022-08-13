@@ -3,18 +3,14 @@ import AddSubscriptionLayout from "../layout/AddSubscriptionLayout";
 import { ListCustomers, ListProducts } from "../resources/LoadData";
 import { useQuery, useMutation } from "react-query";
 import _ from "lodash";
-
+import { LoadingMessage } from "../components/Messages";
 const AddSubscriptionPage = () => {
 	const { isLoading, data: listCustomers } = useQuery(
 		"listCustomers",
 		ListCustomers
 	);
 	const { data: listProducts } = useQuery("listProducts", ListProducts);
-	// useEffect(() => {
-	// 	ListCustomers();
-	// 	ListProducts();
-	// }, []);
-	if (isLoading) return <h1>Loading....</h1>;
+
 	console.log(listCustomers);
 	console.log(listProducts);
 	let listCustomersData = [];
@@ -48,7 +44,7 @@ const AddSubscriptionPage = () => {
 			/>
 		);
 	} else {
-		return <h2>Issues with DB</h2>;
+		return <h1>Loading....</h1>;
 	}
 };
 

@@ -19,7 +19,12 @@ export const AddSubscription = async (formData) => {
 	try {
 		const response = await axios.post("/api/add-subscription", formData);
 		console.log(response);
-		SuccessMessage("Added Subscription!");
+		if (response.data == "Added Entry") {
+			SuccessMessage("Added Subscription!");
+		}
+		if (response.data == "Already Purchased") {
+			WarningMessage(response.data + "! Please Change options & try again.");
+		}
 		return response;
 	} catch (error) {
 		console.log(error);

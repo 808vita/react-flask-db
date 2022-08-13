@@ -8,6 +8,7 @@ import {
 	SuccessMessage,
 	ErrorMessage,
 	WarningMessage,
+	LoadingMessage,
 } from "../components/Messages";
 const EditSubscriptionLayout = ({
 	customersInfo,
@@ -22,6 +23,7 @@ const EditSubscriptionLayout = ({
 	const { mutate } = useMutation();
 	const handleButtonClick = () => {
 		if (selectedSubscriptionID && selectedStartEnd) {
+			LoadingMessage();
 			console.log("all selected !");
 			const formData = new FormData();
 
