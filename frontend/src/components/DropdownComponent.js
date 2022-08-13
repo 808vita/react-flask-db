@@ -55,7 +55,8 @@ const App = ({
 		} else if (buttonName === "Customer With Subscriptions") {
 			setSelection(`${customersInfo[e.key]}`);
 			message.info(`Selected ${customersInfo[e.key]}`);
-			setShowDate(`${customerDateInfo[e.key]}`);
+			setShowDate(customerDateInfo[e.key]);
+			console.log(customerDateInfo[e.key]);
 		} else {
 			setSelection(`No. Of Users : ${e.key}`);
 			message.info(`Selected ${e.key} Users`);

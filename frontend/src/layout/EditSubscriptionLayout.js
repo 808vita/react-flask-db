@@ -18,7 +18,7 @@ const EditSubscriptionLayout = ({
 }) => {
 	const [selectedSubscriptionID, setSelectedSubscriptionID] = useState("");
 	const [selectedStartEnd, setSelectedStartEnd] = useState("");
-	const [showDate, setShowDate] = useState("");
+	const [showDate, setShowDate] = useState([]);
 	const { mutate } = useMutation();
 	const handleButtonClick = () => {
 		if (selectedSubscriptionID && selectedStartEnd) {
@@ -62,7 +62,12 @@ const EditSubscriptionLayout = ({
 				</Col>
 				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
 					<Row justify="center" align="middle">
-						<h4>Ends On: {showDate}</h4>
+						<h4>Started On: {showDate[0]}</h4>
+					</Row>
+				</Col>
+				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
+					<Row justify="center" align="middle">
+						<h4>Ends On: {showDate[1]}</h4>
 					</Row>
 				</Col>
 				<Col span={24} style={{ padding: "5px 0px 20px 0px" }}>
@@ -73,6 +78,7 @@ const EditSubscriptionLayout = ({
 						<EndExtendSubscriptionsComponent
 							buttonName={"Select Option"}
 							setSelectedStartEnd={setSelectedStartEnd}
+							showDate={showDate}
 						/>
 					</Row>
 				</Col>

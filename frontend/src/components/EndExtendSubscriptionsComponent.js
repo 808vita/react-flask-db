@@ -15,7 +15,7 @@ const options = [
 ];
 const EndExtendSubscriptionsComponent = ({
 	setSelectedStartEnd,
-	buttonName,
+	buttonName,showDate
 }) => {
 	const [selection, setSelection] = useState("");
 
@@ -46,7 +46,10 @@ const EndExtendSubscriptionsComponent = ({
 				</Dropdown>
 			</Space>
 			{selection === "Extend End Date" && (
-				<DatePickerEditComponent setSelectedStartEnd={setSelectedStartEnd} />
+				<DatePickerEditComponent
+					setSelectedStartEnd={setSelectedStartEnd}
+					showDate={showDate}
+				/>
 			)}
 		</>
 	);

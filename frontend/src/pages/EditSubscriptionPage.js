@@ -39,7 +39,7 @@ const EditSubscriptionPage = () => {
 		console.log(customersInfo);
 		listSubscriptionsData = _.map(listSubscriptions.data, (item) => {
 			customerProductInfo[item[0]] = customersInfo[item[1]] + " : " + item[2];
-			customerDateInfo[item[0]] = item[4];
+			customerDateInfo[item[0]] = [item[3], item[4]];
 			return {
 				label: customersInfo[item[1]] + " : " + item[2],
 				key: item[0],
