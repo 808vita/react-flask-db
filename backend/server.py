@@ -140,17 +140,17 @@ def add_subscription():
     If it does not exist , add entry into the required table.
     If it does exist , return json stating that the current selection exists
     """
-    # customer_id = request.form['customerId']
-    # selected_product_id = request.form['productId']
-    # start_date = request.form['startDate']
-    # end_date = request.form['endDate']
-    # users_count = request.form['usersCount']
+    customer_id = request.form['customer_id']
+    selected_product_id = request.form['selected_product_id']
+    start_date = request.form['start_date']
+    end_date = request.form['end_date']
+    users_count = request.form['users_count']
 
-    customer_id = "4"
-    selected_product_id = "SigmaMemePro"
-    start_date = "2022-08-12"
-    end_date = "2022-08-15"
-    users_count = 2
+    # customer_id = "4"
+    # selected_product_id = "SigmaMemePro"
+    # start_date = "2022-08-12"
+    # end_date = "2022-08-15"
+    # users_count = 2
 
     cur = mysql.connection.cursor()
 

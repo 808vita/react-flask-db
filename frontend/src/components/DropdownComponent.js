@@ -34,7 +34,7 @@ const usersCount = [
 	},
 ];
 
-const App = ({ buttonName, options, customersInfo }) => {
+const App = ({ buttonName, options, customersInfo, setSelectedOption }) => {
 	const [selection, setSelection] = useState("");
 
 	const handleMenuClick = (e) => {
@@ -49,6 +49,7 @@ const App = ({ buttonName, options, customersInfo }) => {
 			setSelection(`No. Of Users : ${e.key}`);
 			message.info(`Selected ${e.key} Users`);
 		}
+		setSelectedOption(e.key);
 	};
 	const menu = (
 		<Menu onClick={handleMenuClick} items={options ? options : usersCount} />

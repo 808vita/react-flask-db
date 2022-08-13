@@ -7,3 +7,7 @@ export const ListCustomers = () => {
 export const ListProducts = () => {
 	return axios.get("/api/list-products");
 };
+
+export const AddSubscription = (formData) => {
+	return axios.post("/api/add-subscription", formData);
+};
