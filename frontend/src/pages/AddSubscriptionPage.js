@@ -16,6 +16,9 @@ const AddSubscriptionPage = () => {
 	let listCustomersData = [];
 	let listProductsData = [];
 	let customersInfo = {};
+	let ProductInfo = {};
+	let productslist = [];
+	let productSpec = {};
 	if (Array.isArray(listCustomers?.data) && Array.isArray(listProducts?.data)) {
 		listCustomersData = _.map(listCustomers.data, (item) => {
 			return {
@@ -30,11 +33,17 @@ const AddSubscriptionPage = () => {
 		);
 		console.log(customersInfo);
 		listProductsData = _.map(listProducts.data, (item) => {
+			productslist.push(item[0]);
+			productSpec = { price: item[2] };
+			ProductInfo.list = productslist;
+			ProductInfo[item[0]] = productSpec;
+
 			return {
 				label: item[0],
 				key: item[0],
 			};
 		});
+		console.log(ProductInfo);
 		return (
 			<AddSubscriptionLayout
 				listProductsData={listProductsData}

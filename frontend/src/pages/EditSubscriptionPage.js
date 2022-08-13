@@ -13,7 +13,7 @@ const EditSubscriptionPage = () => {
 		"listSubscriptions",
 		ListSubscriptions
 	);
-	if (isLoading) return <h1>Loading....</h1>;
+	// if (isLoading) return <h1>Loading....</h1>;
 	console.log(listCustomers);
 	console.log(listSubscriptions);
 	let listCustomersData = [];
@@ -58,7 +58,7 @@ const EditSubscriptionPage = () => {
 			/>
 		);
 	} else {
-		return <h2>Issues with DB</h2>;
+		return <h1>Loading....</h1>;
 	}
 };
 

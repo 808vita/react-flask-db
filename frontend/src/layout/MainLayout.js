@@ -11,14 +11,11 @@ const MainLayout = ({ children }) => {
 	const navigate = useNavigate();
 
 	const handleCLick = (key) => {
-		if (key === "logOut") {
-			console.log(` Logged Out`);
-			return;
-		} else if (key === "editSubscription") {
+		if (key === "editSubscription") {
 			navigate("/edit-subscription");
 			return;
 		} else if (key === "addSubscription") {
-			navigate("/add-subscription");
+			navigate("/");
 
 			return;
 		}
@@ -45,10 +42,6 @@ const MainLayout = ({ children }) => {
 						{
 							key: `editSubscription`,
 							label: `Edit Subscription`,
-						},
-						{
-							key: `logOut`,
-							label: `Log Out`,
 						},
 					]}
 					onClick={(e) => handleCLick(e.key)}
