@@ -4,14 +4,19 @@ import "./index.css";
 import App from "./App";
 import GlobalState from "./context/GlobalState";
 import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<GlobalState>
-				<App />
-			</GlobalState>
-		</BrowserRouter>
+		<QueryClientProvider client={queryClient}>
+			<BrowserRouter>
+				<GlobalState>
+					<App />
+				</GlobalState>
+			</BrowserRouter>
+		</QueryClientProvider>
 	</React.StrictMode>
 );

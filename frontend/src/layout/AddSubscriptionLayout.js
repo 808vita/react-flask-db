@@ -3,7 +3,11 @@ import React from "react";
 import DatePickerComponent from "../components/DatePickerComponent";
 import DropdownComponent from "../components/DropdownComponent";
 
-const AddSubscriptionLayout = () => (
+const AddSubscriptionLayout = ({
+	listCustomersData,
+	listProductsData,
+	customersInfo,
+}) => (
 	<Row justify="center" align="middle">
 		<Col span={24}>
 			<Col span={24}>
@@ -15,7 +19,11 @@ const AddSubscriptionLayout = () => (
 				<Row justify="center" align="middle">
 					<Col span={24}>
 						<Row justify="center" align="middle">
-							<DropdownComponent buttonName={"Select Customer"} />
+							<DropdownComponent
+								buttonName={"Select Customer"}
+								options={listCustomersData}
+								customersInfo={customersInfo}
+							/>
 						</Row>
 					</Col>
 				</Row>
@@ -24,7 +32,10 @@ const AddSubscriptionLayout = () => (
 				<Row>
 					<Col span={24}>
 						<Row justify="center" align="middle">
-							<DropdownComponent buttonName={"Select Product"} />
+							<DropdownComponent
+								buttonName={"Select Product"}
+								options={listProductsData}
+							/>
 						</Row>
 					</Col>
 				</Row>
