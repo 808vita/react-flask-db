@@ -175,9 +175,11 @@ def edit_subscription():
     # new_end_date = request.form['new_end_date']
     # users_count = request.form['users_count']
 
-    subscription_id = "1"
-    end_date = "2022-08-20"
+    subscription_id = request.form['subscription_id']
+    end_date = request.form['end_date']
 
+    # subscription_id = "1"
+    # end_date = "2022-08-20"
     cur = mysql.connection.cursor()
 
     cur.execute(f"UPDATE subscription SET End_Date=%s WHERE Subscription_ID=%s", (end_date, subscription_id)

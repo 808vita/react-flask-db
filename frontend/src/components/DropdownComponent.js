@@ -34,7 +34,14 @@ const usersCount = [
 	},
 ];
 
-const App = ({ buttonName, options, customersInfo, setSelectedOption }) => {
+const App = ({
+	buttonName,
+	options,
+	customersInfo,
+	setSelectedOption,
+	customerDateInfo,
+	setShowDate,
+}) => {
 	const [selection, setSelection] = useState("");
 
 	const handleMenuClick = (e) => {
@@ -48,6 +55,7 @@ const App = ({ buttonName, options, customersInfo, setSelectedOption }) => {
 		} else if (buttonName === "Customer With Subscriptions") {
 			setSelection(`${customersInfo[e.key]}`);
 			message.info(`Selected ${customersInfo[e.key]}`);
+			setShowDate(`${customerDateInfo[e.key]}`);
 		} else {
 			setSelection(`No. Of Users : ${e.key}`);
 			message.info(`Selected ${e.key} Users`);
@@ -58,16 +66,18 @@ const App = ({ buttonName, options, customersInfo, setSelectedOption }) => {
 		<Menu onClick={handleMenuClick} items={options ? options : usersCount} />
 	);
 	return (
-		<Space wrap>
-			<Dropdown overlay={menu}>
-				<Button style={{ width: "22rem", height: "3rem", fontSize: "1rem" }}>
-					<Space>
-						{selection ? selection : buttonName}
-						<DownOutlined />
-					</Space>
-				</Button>
-			</Dropdown>
-		</Space>
+		<>
+			<Space wrap>
+				<Dropdown overlay={menu}>
+					<Button style={{ width: "22rem", height: "3rem", fontSize: "1rem" }}>
+						<Space>
+							{selection ? selection : buttonName}
+							<DownOutlined />
+						</Space>
+					</Button>
+				</Dropdown>
+			</Space>
+		</>
 	);
 };
 

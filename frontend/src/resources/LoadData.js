@@ -1,4 +1,9 @@
 import axios from "axios";
+import {
+	SuccessMessage,
+	ErrorMessage,
+	WarningMessage,
+} from "../components/Messages";
 //
 
 export const ListCustomers = () => {
@@ -14,10 +19,25 @@ export const AddSubscription = async (formData) => {
 	try {
 		const response = await axios.post("/api/add-subscription", formData);
 		console.log(response);
+		SuccessMessage("Added Subscription!");
 		return response;
 	} catch (error) {
 		console.log(error);
+		ErrorMessage(error);
+		return error;
+	}
+};
 
+export const EditSubscription = async (formData) => {
+	try {
+		const response = await axios.post("/api/edit-subscription", formData);
+		console.log(response);
+		SuccessMessage("Edited Subscription!");
+
+		return response;
+	} catch (error) {
+		console.log(error);
+		ErrorMessage(error);
 		return error;
 	}
 };

@@ -20,6 +20,7 @@ const EditSubscriptionPage = () => {
 	let listSubscriptionsData = [];
 	let customersInfo = {};
 	let customerProductInfo = {};
+	let customerDateInfo = {};
 	if (
 		Array.isArray(listCustomers?.data) &&
 		Array.isArray(listSubscriptions?.data)
@@ -38,6 +39,7 @@ const EditSubscriptionPage = () => {
 		console.log(customersInfo);
 		listSubscriptionsData = _.map(listSubscriptions.data, (item) => {
 			customerProductInfo[item[0]] = customersInfo[item[1]] + " : " + item[2];
+			customerDateInfo[item[0]] = item[4];
 			return {
 				label: customersInfo[item[1]] + " : " + item[2],
 				key: item[0],
@@ -45,11 +47,13 @@ const EditSubscriptionPage = () => {
 		});
 		console.log(listSubscriptionsData);
 		console.log(customerProductInfo);
+		console.log(customerDateInfo);
 		return (
 			<EditSubscriptionLayout
 				customersInfo={customersInfo}
 				customerProductInfo={customerProductInfo}
 				listSubscriptionsData={listSubscriptionsData}
+				customerDateInfo={customerDateInfo}
 				useMutation={useMutation}
 			/>
 		);
