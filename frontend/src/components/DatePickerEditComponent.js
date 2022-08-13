@@ -5,7 +5,7 @@ import React from "react";
 const DatePickerEditComponent = ({ setSelectedStartEnd, showDate }) => {
 	const handleChange = (dateString) => {
 		setSelectedStartEnd(dateString);
-		console.log(dateString);
+		// console.log(dateString);
 	};
 	const disabledDate = (current) => {
 		if (showDate) {

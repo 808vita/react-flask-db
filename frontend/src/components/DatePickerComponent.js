@@ -6,7 +6,7 @@ const DatePickerComponent = ({ setSelectedStartDate, setSelectedStartEnd }) => {
 	const handleChange = (dateString) => {
 		setSelectedStartDate(dateString[0]);
 		setSelectedStartEnd(dateString[1]);
-		console.log(dateString);
+		// console.log(dateString);
 	};
 	return (
 		<Space direction="vertical" size={12}>

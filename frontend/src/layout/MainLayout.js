@@ -18,6 +18,9 @@ const MainLayout = ({ children }) => {
 			navigate("/");
 
 			return;
+		} else if (key === "reports") {
+			navigate("/reports");
+			return;
 		}
 	};
 	return (
@@ -42,6 +45,10 @@ const MainLayout = ({ children }) => {
 						{
 							key: `editSubscription`,
 							label: `Edit Subscription`,
+						},
+						{
+							key: `reports`,
+							label: `Reports`,
 						},
 					]}
 					onClick={(e) => handleCLick(e.key)}
