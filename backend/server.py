@@ -192,5 +192,11 @@ def edit_subscription():
     return "Record Edited", 200
 
 
+@app.route('/<path:path>')
+def oof_redir(path):
+    # Reached if the user hits example.com/ instead of example.com/index.html
+    return render_template('index.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
