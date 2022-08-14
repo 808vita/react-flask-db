@@ -15,7 +15,7 @@ load_dotenv()
 
 # import requests
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="./static", template_folder="./static",)
 CORS(app)
 
 
@@ -34,9 +34,14 @@ app.config['MYSQL_DB'] = os.getenv("MYSQL_DB")
 mysql = MySQL(app)
 
 
-@app.route("/")
-def oof():
-    return f'oof secret code: {os.getenv("secret")}'
+@app.route('/')
+def index_redir():
+    # Reached if the user hits example.com/ instead of example.com/index.html
+    return render_template('index.html')
+
+# @app.route("/")
+# def oof():
+#     return f'oof secret code: {os.getenv("secret")}'
 
 
 def run_get_sql(sql_query):
